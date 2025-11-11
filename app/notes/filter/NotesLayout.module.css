@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.sidebar {
+  width: 250px;
+  min-height: 1007px;
+  background-color: #2c2c2c;
+  color: white;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+@media screen and (min-width: 1542px) {
+  .sidebar {
+    min-height: 782px;
+  }
+}
+
+.notesWrapper {
+  display: flex;
+  flex-direction: row;
+}
