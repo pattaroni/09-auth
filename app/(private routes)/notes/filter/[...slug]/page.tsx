@@ -1,4 +1,3 @@
-import { fetchNotes } from "@/lib/api";
 import {
   dehydrate,
   HydrationBoundary,
@@ -7,6 +6,7 @@ import {
 import Notes from "./Notes.client";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 type Props = {
   params: Promise<{ slug: string[] }>;

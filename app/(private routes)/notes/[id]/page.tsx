@@ -3,10 +3,10 @@ import {
   HydrationBoundary,
   dehydrate,
 } from "@tanstack/react-query";
-import { fetchSingleNote } from "@/lib/api";
 import NoteDetailsClient from "./NoteDetails.client";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { fetchSingleNote } from "@/lib/api/clientApi";
 
 type NoteDetailsProps = {
   params: Promise<{ id: string }>;

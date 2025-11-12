@@ -1,0 +1,76 @@
+import { Note, PostNote } from "@/types/note";
+import { ApiNotesResponse, ENDPOINTS, nextServer } from "./api";
+import { User } from "@/types/user";
+import { UserInfo } from "node:os";
+
+export interface AuthBody {
+  email: string;
+  password: string;
+}
+
+interface ErrorResponse {
+  response: {
+    message: string;
+  };
+}
+
+type CheckSessionRequest = {
+  success: boolean;
+};
+
+export async function fetchNotes(
+  search: string,
+  page: number,
+  tag?: string
+): Promise<ApiNotesResponse> {
+  const { data } = await nextServer.get<ApiNotesResponse>(ENDPOINTS.notes(), {
+    params: {
+      ...(!!search && { search }),
+      page: page,
+      perPage: 12,
+      ...(!!tag && { tag }),
+    },
+  });
+  return data;
+}
+
+export async function fetchSingleNote(id: string): Promise<Note> {
+  const { data } = await nextServer.get<Note>(`${ENDPOINTS.notes()}/${id}`);
+  return data;
+}
+
+export async function deleteNote(id: string): Promise<Note> {
+  const { data } = await nextServer.delete<Note>(ENDPOINTS.delNote(id));
+  return data;
+}
+
+export async function createNote(note: PostNote): Promise<Note> {
+  const { data } = await nextServer.post<Note>(ENDPOINTS.notes(), note);
+  return data;
+}
+
+export async function register(authBody: AuthBody): Promise<User> {
+  const { data } = await nextServer.post<User>(ENDPOINTS.register(), authBody);
+  return data;
+}
+
+export async function login(authBody: AuthBody): Promise<User> {
+  const { data } = await nextServer.post<User>(ENDPOINTS.login(), authBody);
+  return data;
+}
+
+export async function checkSession(): Promise<boolean> {
+  const res = await nextServer.get<CheckSessionRequest>(
+    ENDPOINTS.checkSession()
+  );
+  return res.data.success;
+}
+
+export async function getMe(): Promise<User> {
+  const { data } = await nextServer.get<User>(ENDPOINTS.getMe());
+  return data;
+}
+
+export async function logout(): Promise<void> {
+  await nextServer.post(ENDPOINTS.logout());
+}

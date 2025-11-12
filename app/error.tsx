@@ -10,7 +10,7 @@ const Error = ({ error, reset }: Props) => {
     <main>
       <div>
         <h2>
-          <p>Could not fetch the list of notes.</p>
+          <p>Oops.. Error!</p>
         </h2>
         <p>{error.message}</p>
         <button onClick={reset}>Try Again</button>

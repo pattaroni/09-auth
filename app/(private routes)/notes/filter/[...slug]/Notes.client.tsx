@@ -1,7 +1,7 @@
 "use client";
 
 import SearchBox from "@/components/SearchBox/SearchBox";
-import { ApiNotesResponse, fetchNotes } from "@/lib/api";
+import { ApiNotesResponse } from "@/lib/api/api";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -11,6 +11,7 @@ import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import NoteList from "@/components/NoteList/NoteList";
 import Link from "next/link";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 function Notes({ tag = "" }: { tag?: string }) {
   const [query, setQuery] = useState("");
