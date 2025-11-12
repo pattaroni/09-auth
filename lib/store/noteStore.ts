@@ -11,7 +11,7 @@ interface NoteDraftStore {
 const initialDraft: PostNote = {
   title: "",
   content: "",
-  tag: "Todo",
+  tag: "",
 };
 
 export const useNoteDraftStore = create<NoteDraftStore>()(
