@@ -40,10 +40,11 @@ function EditProfilePage() {
     if (!user?.email) {
       setError("No user email found");
       return;
-    }
-
-    if (username.trim().length < 3) {
+    } else if (username.trim().length < 3) {
       setError("Username must be at least 3 characters long");
+      return;
+    } else if (username.trim().length > 20) {
+      setError("Username must be no longer than 20 characters");
       return;
     }
 
@@ -57,6 +58,9 @@ function EditProfilePage() {
 
     if (value.trim().length < 3) {
       setError("Username must be at least 3 characters long");
+    } else if (username.trim().length > 20) {
+      setError("Username must be no longer than 20 characters");
+      return;
     } else {
       setError("");
     }
