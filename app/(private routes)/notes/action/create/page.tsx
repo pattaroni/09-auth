@@ -1,6 +1,7 @@
 import NoteForm from "@/components/NoteForm/NoteForm";
 import css from "./createNote.module.css";
 import type { Metadata } from "next";
+import { BASE_URL } from "@/lib/api/api";
 
 export const metadata: Metadata = {
   title: "Create Note | NoteHub",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
     title: "Create Note | NoteHub",
     description:
       "Easily create and save new notes in NoteHub. Keep your thoughts and tasks organized in one simple place.",
-    url: "https://pattaroni-08-zustand.vercel.app/create",
+    url: `${BASE_URL}/create`,
     siteName: "NoteHub",
     images: [
       {

@@ -6,7 +6,8 @@ import {
 import NoteDetailsClient from "./NoteDetails.client";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { fetchSingleNote } from "@/lib/api/clientApi";
+import { BASE_URL } from "@/lib/api/api";
+import { fetchServerSingleNote } from "@/lib/api/serverApi";
 
 type NoteDetailsProps = {
   params: Promise<{ id: string }>;
@@ -16,7 +17,7 @@ export async function generateMetadata({
   params,
 }: NoteDetailsProps): Promise<Metadata> {
   const { id } = await params;
-  const note = await fetchSingleNote(id);
+  const note = await fetchServerSingleNote(id);
 
   return {
     title: `Note: ${note.title}`,
@@ -24,7 +25,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Note: ${note.title}`,
       description: note.content.slice(0, 100),
-      url: `https://notehub.com/notes/${id}`,
+      url: `${BASE_URL}/${id}`,
       siteName: "NoteHub",
       images: [
         {
@@ -47,7 +48,7 @@ async function NoteDetails({ params }: NoteDetailsProps) {
 
   await queryClient.prefetchQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchSingleNote(id),
+    queryFn: () => fetchServerSingleNote(id),
   });
 
   return (

@@ -6,7 +6,8 @@ import {
 import Notes from "./Notes.client";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { fetchNotes } from "@/lib/api/clientApi";
+import { BASE_URL } from "@/lib/api/api";
+import { fetchServerNotes } from "@/lib/api/serverApi";
 
 type Props = {
   params: Promise<{ slug: string[] }>;
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Notes: ${slug[0] === "all" ? "All" : slug[0]}`,
       description: `Browse all your notes under the "${slug[0] === "all" ? "All" : slug[0]}" category and keep your ideas organized.`,
-      url: `https://pattaroni-08-zustand.vercel.app/notes/filter/${slug[0]}`,
+      url: `${BASE_URL}/${slug[0]}`,
       siteName: "NoteHub",
       images: [
         {
@@ -65,7 +66,7 @@ async function NotesByCategory({ params }: Props) {
 
   await queryClient.prefetchQuery({
     queryKey: ["notes", "", page, category],
-    queryFn: () => fetchNotes("", page, category),
+    queryFn: () => fetchServerNotes("", page, category),
   });
 
   return (

@@ -5,6 +5,7 @@ import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
+import { BASE_URL } from "@/lib/api/api";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `NoteHub`,
     description: `NoteHub is a simple and efficient app for managing personal notes and keeping your thoughts organized in one place.`,
-    url: `https://pattaroni-08-zustand.vercel.app`,
+    url: `${BASE_URL}`,
     siteName: "NoteHub",
     images: [
       {
