@@ -1,4 +1,5 @@
 "use client";
+
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import css from "./NoteDetails.module.css";
@@ -16,7 +17,12 @@ export default function NoteDetailsClient() {
     refetchOnMount: false,
   });
   if (error) throw error;
-  if (!note) return <Loader>Loading, please wait...</Loader>;
+  if (!note)
+    return (
+      <main>
+        <Loader>Loading, please wait...</Loader>
+      </main>
+    );
   return (
     <main>
       <div className={css.container}>

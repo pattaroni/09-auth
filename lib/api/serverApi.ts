@@ -28,6 +28,7 @@ export async function fetchServerNotes(
   page: number,
   tag?: string
 ): Promise<ApiNotesResponse> {
+  const cookieStore = await cookies();
   const { data } = await nextServer.get<ApiNotesResponse>("/notes", {
     params: {
       ...(!!search && { search }),
@@ -43,6 +44,7 @@ export async function fetchServerNotes(
 }
 
 export async function fetchServerSingleNote(id: string): Promise<Note> {
+  const cookieStore = await cookies();
   const { data } = await nextServer.get<Note>(`/notes/${id}`, {
     headers: {
       Cookie: cookieStore.toString(),
