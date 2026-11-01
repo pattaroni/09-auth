@@ -4,8 +4,6 @@ A notes app with authentication, built with **Next.js 15 (App Router)** and **Ty
 
 **Live demo:** https://pattaroni-09-auth.vercel.app/
 
-![NoteHub screenshot](./public/screenshot.png)
-
 > Course project at GoIT (Fullstack Developer program). The backend API was provided by the course. I built the whole frontend part: pages, routing, auth flow, data fetching and UI.
 
 ## Features
